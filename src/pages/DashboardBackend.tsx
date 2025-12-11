@@ -1,5 +1,26 @@
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
-import { Server, Database, Code, Cloud, Settings, ArrowRight } from "lucide-react";
+import { MetricCard } from "@/components/dashboard/MetricCard";
+import { DonutChart } from "@/components/dashboard/DonutChart";
+import { InsightCard } from "@/components/dashboard/InsightCard";
+import { BackendHighlights } from "@/components/dashboard-backend/BackendHighlights";
+import { BackendDetailedComparison } from "@/components/dashboard-backend/BackendDetailedComparison";
+import { BackendComparisonBarChart } from "@/components/dashboard-backend/BackendComparisonBarChart";
+import { TrendingUp, TrendingDown, Server, Code, Users, Flag, Layers } from "lucide-react";
+import {
+    tipoTarefaOutubro,
+    tipoTarefaNovembro,
+    responsavelOutubro,
+    responsavelNovembro,
+    prioridadeOutubro,
+    prioridadeNovembro,
+    moduloOutubro,
+    moduloNovembro,
+    totalBackendOutubro,
+    totalBackendNovembro,
+    kpisBackend,
+    getTipoTarefaColor,
+    getModuloColor,
+} from "@/data/dashboardBackendData";
 
 const DashboardBackend = () => {
     return (
@@ -12,64 +33,133 @@ const DashboardBackend = () => {
                 />
 
                 <main className="space-y-8">
-                    {/* Coming Soon Section */}
-                    <section className="flex flex-col items-center justify-center min-h-[60vh] text-center">
-                        <div className="relative">
-                            {/* Animated background elements */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-                            </div>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-48 h-48 bg-purple-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: "500ms" }} />
-                            </div>
+                    {/* KPIs Principais */}
+                    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <MetricCard
+                            title="Total Outubro"
+                            value={totalBackendOutubro}
+                            previousValue={0}
+                            subtitle="Tarefas aprovadas"
+                            icon={<Server className="w-5 h-5" />}
+                            variant="primary"
+                            delay={0}
+                        />
+                        <MetricCard
+                            title="Total Novembro"
+                            value={totalBackendNovembro}
+                            previousValue={totalBackendOutubro}
+                            subtitle="Tarefas aprovadas"
+                            icon={<Server className="w-5 h-5" />}
+                            variant="accent"
+                            delay={100}
+                        />
+                        <MetricCard
+                            title="Total Geral"
+                            value={kpisBackend.totalGeral}
+                            previousValue={0}
+                            subtitle="Soma dos dois meses"
+                            icon={<Code className="w-5 h-5" />}
+                            variant="success"
+                            delay={200}
+                        />
+                        <InsightCard
+                            title="Variação Mensal"
+                            value={`${kpisBackend.variacaoTotal > 0 ? '+' : ''}${kpisBackend.variacaoTotal}%`}
+                            description={kpisBackend.variacaoTotal >= 0 ? "Crescimento no período" : "Redução no período"}
+                            icon={kpisBackend.variacaoTotal >= 0 ? TrendingUp : TrendingDown}
+                            variant={kpisBackend.variacaoTotal >= 0 ? "success" : "warning"}
+                            delay={300}
+                        />
+                    </section>
 
-                            {/* Icon grid */}
-                            <div className="relative grid grid-cols-3 gap-4 mb-8">
-                                <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/20 animate-fade-in" style={{ animationDelay: "0ms" }}>
-                                    <Database className="w-8 h-8 text-blue-400" />
-                                </div>
-                                <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/20 animate-fade-in" style={{ animationDelay: "100ms" }}>
-                                    <Server className="w-8 h-8 text-purple-400" />
-                                </div>
-                                <div className="p-4 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/20 animate-fade-in" style={{ animationDelay: "200ms" }}>
-                                    <Cloud className="w-8 h-8 text-green-400" />
-                                </div>
-                                <div className="p-4 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/20 animate-fade-in" style={{ animationDelay: "300ms" }}>
-                                    <Code className="w-8 h-8 text-orange-400" />
-                                </div>
-                                <div className="p-4 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/20 animate-fade-in" style={{ animationDelay: "400ms" }}>
-                                    <Settings className="w-8 h-8 text-primary animate-spin" style={{ animationDuration: "3s" }} />
-                                </div>
-                                <div className="p-4 rounded-2xl bg-gradient-to-br from-pink-500/20 to-pink-600/10 border border-pink-500/20 animate-fade-in" style={{ animationDelay: "500ms" }}>
-                                    <ArrowRight className="w-8 h-8 text-pink-400" />
-                                </div>
-                            </div>
-                        </div>
+                    {/* Destaques Visuais */}
+                    <section>
+                        <BackendHighlights />
+                    </section>
 
-                        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 animate-fade-in" style={{ animationDelay: "600ms" }}>
-                            Em Breve
+                    {/* Gráficos Comparativos de Barras */}
+                    <section>
+                        <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                            <Code className="w-5 h-5 text-primary" />
+                            Comparativo Mensal - Evolução
                         </h2>
-                        <p className="text-xl text-muted-foreground max-w-md animate-fade-in" style={{ animationDelay: "700ms" }}>
-                            O Dashboard Backend está em desenvolvimento. Em breve você terá acesso a métricas e análises da equipe de desenvolvimento.
-                        </p>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <BackendComparisonBarChart
+                                title="Tipos de Tarefa - Outubro vs Novembro"
+                                subtitle="Comparativo de entregas por tipo"
+                                dataOutubro={tipoTarefaOutubro}
+                                dataNovembro={tipoTarefaNovembro}
+                                delay={0}
+                            />
+                            <BackendComparisonBarChart
+                                title="Módulos - Outubro vs Novembro"
+                                subtitle="Comparativo de entregas por módulo"
+                                dataOutubro={moduloOutubro}
+                                dataNovembro={moduloNovembro}
+                                delay={100}
+                            />
+                        </div>
+                    </section>
 
-                        {/* Feature hints */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 max-w-3xl animate-fade-in" style={{ animationDelay: "800ms" }}>
-                            <div className="p-4 rounded-xl bg-card border border-border">
-                                <Database className="w-6 h-6 text-blue-400 mb-2" />
-                                <h3 className="font-semibold text-foreground mb-1">APIs & Integrações</h3>
-                                <p className="text-sm text-muted-foreground">Métricas de performance das APIs</p>
-                            </div>
-                            <div className="p-4 rounded-xl bg-card border border-border">
-                                <Server className="w-6 h-6 text-purple-400 mb-2" />
-                                <h3 className="font-semibold text-foreground mb-1">Infraestrutura</h3>
-                                <p className="text-sm text-muted-foreground">Monitoramento de servidores</p>
-                            </div>
-                            <div className="p-4 rounded-xl bg-card border border-border">
-                                <Code className="w-6 h-6 text-green-400 mb-2" />
-                                <h3 className="font-semibold text-foreground mb-1">Produtividade</h3>
-                                <p className="text-sm text-muted-foreground">Análise de entregas e sprints</p>
-                            </div>
+                    {/* Comparativo Detalhado */}
+                    <section>
+                        <BackendDetailedComparison
+                            title="Visão Geral - Comparativo Mensal"
+                            subtitle="Análise detalhada por categoria"
+                            tipoOutubro={tipoTarefaOutubro}
+                            tipoNovembro={tipoTarefaNovembro}
+                            responsavelOutubro={responsavelOutubro}
+                            responsavelNovembro={responsavelNovembro}
+                            prioridadeOutubro={prioridadeOutubro}
+                            prioridadeNovembro={prioridadeNovembro}
+                        />
+                    </section>
+
+                    {/* Tipos de Tarefa */}
+                    <section>
+                        <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                            <Layers className="w-5 h-5 text-primary" />
+                            Distribuição por Tipo de Tarefa
+                        </h2>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <DonutChart
+                                title="Tipos - Outubro"
+                                subtitle={`${totalBackendOutubro} entregas`}
+                                data={tipoTarefaOutubro}
+                                delay={0}
+                                colorFn={getTipoTarefaColor}
+                            />
+                            <DonutChart
+                                title="Tipos - Novembro"
+                                subtitle={`${totalBackendNovembro} entregas`}
+                                data={tipoTarefaNovembro}
+                                delay={100}
+                                colorFn={getTipoTarefaColor}
+                            />
+                        </div>
+                    </section>
+
+                    {/* Módulos */}
+                    <section>
+                        <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                            <Flag className="w-5 h-5 text-primary" />
+                            Distribuição por Módulo
+                        </h2>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <DonutChart
+                                title="Módulos - Outubro"
+                                subtitle={`${totalBackendOutubro} entregas`}
+                                data={moduloOutubro}
+                                delay={0}
+                                colorFn={getModuloColor}
+                            />
+                            <DonutChart
+                                title="Módulos - Novembro"
+                                subtitle={`${totalBackendNovembro} entregas`}
+                                data={moduloNovembro}
+                                delay={100}
+                                colorFn={getModuloColor}
+                            />
                         </div>
                     </section>
                 </main>
