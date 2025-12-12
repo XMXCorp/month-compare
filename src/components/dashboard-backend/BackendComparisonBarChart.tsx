@@ -13,6 +13,7 @@ interface BackendComparisonBarChartProps {
     dataOutubro: DataItem[];
     dataNovembro: DataItem[];
     delay?: number;
+    height?: number;
 }
 
 const COLORS = {
@@ -26,6 +27,7 @@ export function BackendComparisonBarChart({
     dataOutubro,
     dataNovembro,
     delay = 0,
+    height = 300,
 }: BackendComparisonBarChartProps) {
     // Combinar dados para o gráfico
     const allNames = new Set([
@@ -46,7 +48,7 @@ export function BackendComparisonBarChart({
 
     return (
         <ChartCard title={title} subtitle={subtitle} delay={delay}>
-            <div className="h-[300px] w-full mt-4">
+            <div className="w-full mt-4" style={{ height: `${height}px` }}>
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                         data={chartData}

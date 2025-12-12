@@ -90,6 +90,7 @@ export const PRODUCT_COLORS: Record<string, string> = {
   "JERTARIS": "#EC4899",         // Rosa
   "FEILAIRA": "#F97316",         // Laranja
   "ARIALIEF NEUROPATHY": "#06B6D4", // Cyan
+  "ARIALIEF": "#06B6D4",         // Cyan (Generic)
   "ALPHACUR": "#C084FC",         // Roxo claro
   "KORVIZOL": "#F87171",         // Vermelho claro
   "KARYLIEF": "#4ADE80",         // Verde claro
@@ -100,6 +101,30 @@ export const PRODUCT_COLORS: Record<string, string> = {
   "MAHGRYN": "#8B5CF6",          // Violet
   "BLINZADOR": "#EAB308",        // Yellow
   "OUTROS": "#64748B",           // Slate
+  "TODOS PRODUTOS": "#475569",   // Slate Dark
+  "TODOS": "#475569",            // Slate Dark
+  // Nuevos Backend
+  "DANMYTS": "#D8B4FE",          // Lavender
+  "MAIZKIDOR": "#FCA5A5",        // Red Light
+  "ATHENTYS": "#67E8F9",         // Cyan Light
+  "MEMYTS DREAM": "#7E22CE",     // Purple Dark
+  "MEMYTS DREAMS": "#7E22CE",    // Purple Dark
+  "MEMYTS BOX": "#9333EA",       // Purple Mid
+  "HALEGRYN": "#BEF264",         // Lime
+  "NERVE BOX": "#FDBA74",        // Orange Light
+  "NERV BOX": "#FDBA74",         // Orange Light
+  "BASMONTEX": "#FDA4AF",        // Rose
+  "OLISTEREN": "#5EEAD4",        // Teal Light
+  "KESKARA": "#C4B5FD",          // Violet Light
+  "KYMEZOL": "#86EFAC",          // Green Light
+  "CUCUDROPS": "#FCD34D",        // Amber Light
+  "GOLDENFRIB": "#D4D4D8",       // Zinc
+  "CONTROLE": "#A1A1AA",         // Zinc Dark
+  "VERGOLIEF": "#FB7185",        // Rose Dark
+  "RECORRÊNCIA": "#2DD4BF",      // Teal
+  "PRDUTO": "#94A3B8",           // Typo generic
+  "ARIALIF": "#06B6D4",          // Typo
+  "OPERAÇÃO GERAL": "#1E293B",   // Slate Darker
 };
 
 // Cores consistentes por tipo de vídeo
@@ -149,11 +174,11 @@ export const kpis = {
   totalNovembro: totalTipoVideoNovembro,
   totalGeral: totalTipoVideoOutubro + totalTipoVideoNovembro,
   variacaoTotal: calculateGrowth(totalTipoVideoNovembro, totalTipoVideoOutubro),
-  
+
   // Destaques Outubro
   topProdutoOutubro: findBestPerformer(produtoOutubro),
   topCategoriaOutubro: findBestPerformer(tipoVideoOutubro),
-  
+
   // Destaques Novembro
   topProdutoNovembro: findBestPerformer(produtoNovembro),
   topCategoriaNovembro: findBestPerformer(tipoVideoNovembro),
