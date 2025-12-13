@@ -1,5 +1,6 @@
 // Dados extraídos dos Excel de Outubro e Novembro 2025 - Dashboard ADS
 // Outubro: 51 registros | Novembro: 48 registros
+import { getOfficialNiche, OFFICIAL_NICHE_COLORS } from "./officialProducts";
 
 // OUTUBRO - Produtos - Total: 51
 export const produtoAdsOutubro = [
@@ -21,25 +22,28 @@ export const produtoAdsNovembro = [
   { name: "KORVIZOL", value: 1, percentage: 2.08 },
 ];
 
-// OUTUBRO - Nichos - Total: 51
-export const nichoOutubro = [
-  { name: "MEMORY", value: 28, percentage: 54.90 },
-  { name: "EMAGRECIMENTO", value: 17, percentage: 33.33 },
-  { name: "ADULTO", value: 2, percentage: 3.92 },
-  { name: "FUNGOS", value: 2, percentage: 3.92 },
-  { name: "TINNITUS", value: 1, percentage: 1.96 },
-  { name: "VAZIO", value: 1, percentage: 1.96 },
-];
+// Helper to calc niches
+const calculateNiches = (products: typeof produtoAdsOutubro) => {
+  const nicheMap = new Map<string, number>();
+  products.forEach(p => {
+    const niche = getOfficialNiche(p.name);
+    const val = nicheMap.get(niche) || 0;
+    nicheMap.set(niche, val + p.value);
+  });
 
-// NOVEMBRO - Nichos - Total: 48
-export const nichoNovembro = [
-  { name: "TINNITUS", value: 18, percentage: 37.50 },
-  { name: "MEMORY", value: 13, percentage: 27.08 },
-  { name: "PROSTATE", value: 10, percentage: 20.83 },
-  { name: "ADULTO", value: 3, percentage: 6.25 },
-  { name: "FUNGOS", value: 3, percentage: 6.25 },
-  { name: "PAIN RELIEF", value: 1, percentage: 2.08 },
-];
+  const total = Array.from(nicheMap.values()).reduce((a, b) => a + b, 0);
+  return Array.from(nicheMap.entries())
+    .map(([name, value]) => ({
+      name,
+      value,
+      percentage: Number(((value / total) * 100).toFixed(2))
+    }))
+    .sort((a, b) => b.value - a.value);
+};
+
+// DERIVED NICHES from Official Map
+export const nichoOutubro = calculateNiches(produtoAdsOutubro);
+export const nichoNovembro = calculateNiches(produtoAdsNovembro);
 
 // OUTUBRO - Squads - Total: 51
 export const squadOutubro = [
@@ -73,18 +77,6 @@ export const assigneeNovembro = [
 export const totalAdsOutubro = 51;
 export const totalAdsNovembro = 48;
 
-// Cores por nicho
-export const NICHO_COLORS: Record<string, string> = {
-  "MEMORY": "#A855F7",        // Roxo primário
-  "EMAGRECIMENTO": "#38BDF8", // Azul cyan
-  "ADULTO": "#EC4899",        // Rosa
-  "FUNGOS": "#22C55E",        // Verde
-  "TINNITUS": "#FACC15",      // Amarelo
-  "PROSTATE": "#F97316",      // Laranja
-  "PAIN RELIEF": "#06B6D4",   // Cyan
-  "VAZIO": "#64748B",         // Slate
-};
-
 // Cores por squad
 export const SQUAD_COLORS: Record<string, string> = {
   "GOOGLE": "#A855F7",        // Roxo primário
@@ -105,7 +97,7 @@ export const PRODUTO_ADS_COLORS: Record<string, string> = {
 
 // Helpers
 export const getNichoColor = (name: string): string => {
-  return NICHO_COLORS[name.toUpperCase()] || NICHO_COLORS[name] || "#94A3B8";
+  return OFFICIAL_NICHE_COLORS[name] || "#94A3B8";
 };
 
 export const getSquadColor = (name: string): string => {

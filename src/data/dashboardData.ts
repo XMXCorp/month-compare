@@ -1,5 +1,6 @@
 // Dados extraídos dos Excel de Outubro e Novembro 2025
 // Outubro: 69 registros | Novembro: 45 registros
+import { getOfficialNiche, OFFICIAL_NICHE_COLORS } from "./officialProducts";
 
 // OUTUBRO - Categorias (Tipo de Vídeo) - Total: 69
 export const tipoVideoOutubro = [
@@ -57,6 +58,35 @@ export const produtoNovembro = [
   { name: "FEILAIRA", value: 1, percentage: 2.22 },
 ];
 
+// Helper to calc niches (Derived from Official Map)
+const calculateNiches = (products: typeof produtoOutubro) => {
+  const nicheMap = new Map<string, number>();
+  products.forEach(p => {
+    const niche = getOfficialNiche(p.name);
+    const val = nicheMap.get(niche) || 0;
+    nicheMap.set(niche, val + p.value);
+  });
+
+  // Sort by value desc
+  return Array.from(nicheMap.entries())
+    .map(([name, value]) => ({
+      name,
+      value,
+      // percentage calc needs total, calculate locally or reuse
+      percentage: 0
+    }))
+    .sort((a, b) => b.value - a.value);
+};
+
+// Calculate with percentages
+const withPct = (list: { name: string, value: number }[]) => {
+  const total = list.reduce((a, b) => a + b.value, 0);
+  return list.map(i => ({ ...i, percentage: Number(((i.value / total) * 100).toFixed(2)) }));
+};
+
+export const nichosOutubro = withPct(calculateNiches(produtoOutubro));
+export const nichosNovembro = withPct(calculateNiches(produtoNovembro));
+
 // Totais calculados
 const totalTipoVideoOutubro = tipoVideoOutubro.reduce((sum, item) => sum + item.value, 0);
 const totalTipoVideoNovembro = tipoVideoNovembro.reduce((sum, item) => sum + item.value, 0);
@@ -81,52 +111,6 @@ export const MONTH_COLORS = {
   novembro: "#A855F7", // Roxo XMX
 };
 
-// Cores consistentes por produto
-export const PRODUCT_COLORS: Record<string, string> = {
-  "MEMYTS": "#A855F7",           // Roxo primário
-  "LAELLIUM": "#38BDF8",         // Azul cyan
-  "PRESGERA": "#22C55E",         // Verde
-  "GARAHERB": "#FACC15",         // Amarelo
-  "JERTARIS": "#EC4899",         // Rosa
-  "FEILAIRA": "#F97316",         // Laranja
-  "ARIALIEF NEUROPATHY": "#06B6D4", // Cyan
-  "ARIALIEF": "#06B6D4",         // Cyan (Generic)
-  "ALPHACUR": "#C084FC",         // Roxo claro
-  "KORVIZOL": "#F87171",         // Vermelho claro
-  "KARYLIEF": "#4ADE80",         // Verde claro
-  "LAELLIUM GUT": "#818CF8",     // Indigo
-  "ARIALIEF SCIATICA": "#FB923C", // Laranja claro
-  "ZEREVEST": "#94A3B8",         // Cinza
-  "ALITORYN": "#14B8A6",         // Teal
-  "MAHGRYN": "#8B5CF6",          // Violet
-  "BLINZADOR": "#EAB308",        // Yellow
-  "OUTROS": "#64748B",           // Slate
-  "TODOS PRODUTOS": "#475569",   // Slate Dark
-  "TODOS": "#475569",            // Slate Dark
-  // Nuevos Backend
-  "DANMYTS": "#D8B4FE",          // Lavender
-  "MAIZKIDOR": "#FCA5A5",        // Red Light
-  "ATHENTYS": "#67E8F9",         // Cyan Light
-  "MEMYTS DREAM": "#7E22CE",     // Purple Dark
-  "MEMYTS DREAMS": "#7E22CE",    // Purple Dark
-  "MEMYTS BOX": "#9333EA",       // Purple Mid
-  "HALEGRYN": "#BEF264",         // Lime
-  "NERVE BOX": "#FDBA74",        // Orange Light
-  "NERV BOX": "#FDBA74",         // Orange Light
-  "BASMONTEX": "#FDA4AF",        // Rose
-  "OLISTEREN": "#5EEAD4",        // Teal Light
-  "KESKARA": "#C4B5FD",          // Violet Light
-  "KYMEZOL": "#86EFAC",          // Green Light
-  "CUCUDROPS": "#FCD34D",        // Amber Light
-  "GOLDENFRIB": "#D4D4D8",       // Zinc
-  "CONTROLE": "#A1A1AA",         // Zinc Dark
-  "VERGOLIEF": "#FB7185",        // Rose Dark
-  "RECORRÊNCIA": "#2DD4BF",      // Teal
-  "PRDUTO": "#94A3B8",           // Typo generic
-  "ARIALIF": "#06B6D4",          // Typo
-  "OPERAÇÃO GERAL": "#1E293B",   // Slate Darker
-};
-
 // Cores consistentes por tipo de vídeo
 export const VIDEO_TYPE_COLORS: Record<string, string> = {
   "UPSELL": "#A855F7",                  // Roxo primário
@@ -144,7 +128,12 @@ export const VIDEO_TYPE_COLORS: Record<string, string> = {
 
 // Função helper para obter cor do produto
 export const getProductColor = (name: string): string => {
-  return PRODUCT_COLORS[name.toUpperCase()] || "#94A3B8";
+  // Use niche color for product if available
+  const niche = getOfficialNiche(name);
+  if (niche && OFFICIAL_NICHE_COLORS[niche]) {
+    return OFFICIAL_NICHE_COLORS[niche];
+  }
+  return "#94A3B8";
 };
 
 // Função helper para obter cor do tipo de vídeo

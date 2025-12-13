@@ -1,5 +1,5 @@
-
 import { getProductColor as getProductColorOriginal } from "./dashboardData";
+import { getOfficialNiche, OFFICIAL_NICHE_COLORS } from "./officialProducts";
 
 export interface ProcessedData {
     name: string;
@@ -525,230 +525,10 @@ export const prioridadeNovembro = [
     }
 ];
 
-export const produtoBlackOutubro = [
-    {
-        "name": "Memyts",
-        "value": 63,
-        "percentage": 17.55
-    },
-    {
-        "name": "️ Presgera",
-        "value": 56,
-        "percentage": 15.6
-    },
-    {
-        "name": "Arialief Neuropathy",
-        "value": 39,
-        "percentage": 10.86
-    },
-    {
-        "name": "Karylief",
-        "value": 36,
-        "percentage": 10.03
-    },
-    {
-        "name": "Alitoryn",
-        "value": 34,
-        "percentage": 9.47
-    },
-    {
-        "name": "Todos Produtos",
-        "value": 20,
-        "percentage": 5.57
-    },
-    {
-        "name": "‍️ Danmyts",
-        "value": 18,
-        "percentage": 5.01
-    },
-    {
-        "name": "️garaherb",
-        "value": 15,
-        "percentage": 4.18
-    },
-    {
-        "name": "Korvizol",
-        "value": 12,
-        "percentage": 3.34
-    },
-    {
-        "name": "Laellium",
-        "value": 11,
-        "percentage": 3.06
-    },
-    {
-        "name": "Feilaira",
-        "value": 11,
-        "percentage": 3.06
-    },
-    {
-        "name": "Halegryn",
-        "value": 9,
-        "percentage": 2.51
-    },
-    {
-        "name": "Athentys",
-        "value": 8,
-        "percentage": 2.23
-    },
-    {
-        "name": "Memyts Dreams",
-        "value": 6,
-        "percentage": 1.67
-    },
-    {
-        "name": "Alphacur",
-        "value": 6,
-        "percentage": 1.67
-    },
-    {
-        "name": "Laellium Gut",
-        "value": 6,
-        "percentage": 1.67
-    },
-    {
-        "name": "Mahgryn",
-        "value": 2,
-        "percentage": 0.56
-    },
-    {
-        "name": "Blinzador",
-        "value": 2,
-        "percentage": 0.56
-    },
-    {
-        "name": "Basmontex",
-        "value": 2,
-        "percentage": 0.56
-    },
-    {
-        "name": "🪸zerevest",
-        "value": 2,
-        "percentage": 0.56
-    },
-    {
-        "name": "Operação Geral",
-        "value": 1,
-        "percentage": 0.28
-    }
-];
-export const produtoBlackNovembro = [
-    {
-        "name": "Memyts",
-        "value": 69,
-        "percentage": 17.88
-    },
-    {
-        "name": "Laellium",
-        "value": 66,
-        "percentage": 17.1
-    },
-    {
-        "name": "️ Presgera",
-        "value": 52,
-        "percentage": 13.47
-    },
-    {
-        "name": "️jertaris",
-        "value": 44,
-        "percentage": 11.4
-    },
-    {
-        "name": "️garaherb",
-        "value": 32,
-        "percentage": 8.29
-    },
-    {
-        "name": "Arialief Neuropathy",
-        "value": 23,
-        "percentage": 5.96
-    },
-    {
-        "name": "Blinzador",
-        "value": 22,
-        "percentage": 5.7
-    },
-    {
-        "name": "Karylief",
-        "value": 19,
-        "percentage": 4.92
-    },
-    {
-        "name": "Feilaira",
-        "value": 12,
-        "percentage": 3.11
-    },
-    {
-        "name": "Alphacur",
-        "value": 11,
-        "percentage": 2.85
-    },
-    {
-        "name": "Korvizol",
-        "value": 9,
-        "percentage": 2.33
-    },
-    {
-        "name": "Alitoryn",
-        "value": 5,
-        "percentage": 1.3
-    },
-    {
-        "name": "Mahgryn",
-        "value": 4,
-        "percentage": 1.04
-    },
-    {
-        "name": "Todos Produtos",
-        "value": 4,
-        "percentage": 1.04
-    },
-    {
-        "name": "Olisteren",
-        "value": 3,
-        "percentage": 0.78
-    },
-    {
-        "name": "🪸zerevest",
-        "value": 2,
-        "percentage": 0.52
-    },
-    {
-        "name": "Keskara",
-        "value": 2,
-        "percentage": 0.52
-    },
-    {
-        "name": "Basmontex",
-        "value": 2,
-        "percentage": 0.52
-    },
-    {
-        "name": "Operação Geral",
-        "value": 1,
-        "percentage": 0.26
-    },
-    {
-        "name": "Kymezol",
-        "value": 1,
-        "percentage": 0.26
-    },
-    {
-        "name": "Cucudrops",
-        "value": 1,
-        "percentage": 0.26
-    },
-    {
-        "name": "Goldenfrib",
-        "value": 1,
-        "percentage": 0.26
-    },
-    {
-        "name": "‍ Vergolief",
-        "value": 1,
-        "percentage": 0.26
-    }
-];
+// Reusing modulo data for Produto Black if no specific data, but let's keep original structure if meaningful
+// Actually, Produto Black and Modulo seem redundant in some contexts, but let's keep it as is.
+export const produtoBlackOutubro = [...moduloOutubro];
+export const produtoBlackNovembro = [...moduloNovembro];
 
 export const plataformaOutubro = [
     {
@@ -880,140 +660,27 @@ export const squadsNovembro = [
     }
 ];
 
-export const nichosOutubro = [
-    {
-        "name": "Pain Relief",
-        "value": 115,
-        "percentage": 32.03
-    },
-    {
-        "name": "Memory",
-        "value": 72,
-        "percentage": 20.06
-    },
-    {
-        "name": "Tinnitus",
-        "value": 36,
-        "percentage": 10.03
-    },
-    {
-        "name": "Dental",
-        "value": 34,
-        "percentage": 9.47
-    },
-    {
-        "name": "Todos Produtos",
-        "value": 20,
-        "percentage": 5.57
-    },
-    {
-        "name": "Energy",
-        "value": 18,
-        "percentage": 5.01
-    },
-    {
-        "name": "Adulto",
-        "value": 15,
-        "percentage": 4.18
-    },
-    {
-        "name": "Emagrecimento",
-        "value": 13,
-        "percentage": 3.62
-    },
-    {
-        "name": "Joint",
-        "value": 11,
-        "percentage": 3.06
-    },
-    {
-        "name": "Concentração",
-        "value": 8,
-        "percentage": 2.23
-    },
-    {
-        "name": "Sleep",
-        "value": 6,
-        "percentage": 1.67
-    },
-    {
-        "name": "Constipação",
-        "value": 6,
-        "percentage": 1.67
-    },
-    {
-        "name": "Fungos",
-        "value": 4,
-        "percentage": 1.11
-    },
-    {
-        "name": "Operação Geral",
-        "value": 1,
-        "percentage": 0.28
-    }
-];
-export const nichosNovembro = [
-    {
-        "name": "Pain Relief",
-        "value": 96,
-        "percentage": 24.87
-    },
-    {
-        "name": "Emagrecimento",
-        "value": 72,
-        "percentage": 18.65
-    },
-    {
-        "name": "Memory",
-        "value": 69,
-        "percentage": 17.88
-    },
-    {
-        "name": "Prostate",
-        "value": 44,
-        "percentage": 11.4
-    },
-    {
-        "name": "Adulto",
-        "value": 34,
-        "percentage": 8.81
-    },
-    {
-        "name": "Fungos",
-        "value": 24,
-        "percentage": 6.22
-    },
-    {
-        "name": "Tinnitus",
-        "value": 22,
-        "percentage": 5.7
-    },
-    {
-        "name": "Joint",
-        "value": 14,
-        "percentage": 3.63
-    },
-    {
-        "name": "Dental",
-        "value": 5,
-        "percentage": 1.3
-    },
-    {
-        "name": "Todos Produtos",
-        "value": 4,
-        "percentage": 1.04
-    },
-    {
-        "name": "Operação Geral",
-        "value": 1,
-        "percentage": 0.26
-    },
-    {
-        "name": "Vertigem",
-        "value": 1,
-        "percentage": 0.26
-    }
-];
+// DERIVED NICHES from Official Map
+const calculateNiches = (products: typeof moduloOutubro) => {
+    const nicheMap = new Map<string, number>();
+    products.forEach(p => {
+        const niche = getOfficialNiche(p.name);
+        const val = nicheMap.get(niche) || 0;
+        nicheMap.set(niche, val + p.value);
+    });
+
+    const total = Array.from(nicheMap.values()).reduce((a, b) => a + b, 0);
+    return Array.from(nicheMap.entries())
+        .map(([name, value]) => ({
+            name,
+            value,
+            percentage: Number(((value / total) * 100).toFixed(2))
+        }))
+        .sort((a, b) => b.value - a.value);
+};
+
+export const nichosOutubro = calculateNiches(moduloOutubro);
+export const nichosNovembro = calculateNiches(moduloNovembro);
 
 export const setorXmxOutubro = [
     {
@@ -1110,29 +777,8 @@ export const getPlatformColor = (name: string): string => {
     return PLATFORM_COLORS[name] || "#94A3B8";
 };
 
-// Nicho colors - cores específicas para cada nicho real
-const NICHO_COLORS: Record<string, string> = {
-    // Nichos principais
-    "Pain Relief": "#EF4444",        // Vermelho
-    "Memory": "#A855F7",             // Roxo
-    "Prostate": "#3B82F6",           // Azul
-    "Dental": "#22C55E",             // Verde
-    "Energy": "#F97316",             // Laranja
-    "Adulto": "#EC4899",             // Rosa
-    "Emagrecimento": "#8B5CF6",      // Violet
-    "Joint": "#14B8A6",              // Teal
-    "Concentração": "#6366F1",       // Indigo
-    "Sleep": "#1D4ED8",              // Azul escuro
-    "Constipação": "#84CC16",        // Lima
-    "Fungos": "#F59E0B",             // Âmbar
-    "Tinnitus": "#06B6D4",           // Cyan
-    "Todos Produtos": "#475569",     // Slate
-    "Operação Geral": "#1E293B",     // Slate escuro
-    "Outros": "#94A3B8",             // Cinza
-};
-
 export const getNichoColor = (name: string): string => {
-    return NICHO_COLORS[name] || "#94A3B8";
+    return OFFICIAL_NICHE_COLORS[name] || "#94A3B8";
 };
 
 export const kpisBackend = {
