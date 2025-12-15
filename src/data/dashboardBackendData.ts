@@ -1,5 +1,5 @@
+
 import { getProductColor as getProductColorOriginal } from "./dashboardData";
-import { getOfficialNiche, OFFICIAL_NICHE_COLORS } from "./officialProducts";
 
 export interface ProcessedData {
     name: string;
@@ -525,10 +525,230 @@ export const prioridadeNovembro = [
     }
 ];
 
-// Reusing modulo data for Produto Black if no specific data, but let's keep original structure if meaningful
-// Actually, Produto Black and Modulo seem redundant in some contexts, but let's keep it as is.
-export const produtoBlackOutubro = [...moduloOutubro];
-export const produtoBlackNovembro = [...moduloNovembro];
+export const produtoBlackOutubro = [
+    {
+        "name": "Memyts",
+        "value": 63,
+        "percentage": 17.55
+    },
+    {
+        "name": "️ Presgera",
+        "value": 56,
+        "percentage": 15.6
+    },
+    {
+        "name": "Arialief Neuropathy",
+        "value": 39,
+        "percentage": 10.86
+    },
+    {
+        "name": "Karylief",
+        "value": 36,
+        "percentage": 10.03
+    },
+    {
+        "name": "Alitoryn",
+        "value": 34,
+        "percentage": 9.47
+    },
+    {
+        "name": "Todos Produtos",
+        "value": 20,
+        "percentage": 5.57
+    },
+    {
+        "name": "‍️ Danmyts",
+        "value": 18,
+        "percentage": 5.01
+    },
+    {
+        "name": "️garaherb",
+        "value": 15,
+        "percentage": 4.18
+    },
+    {
+        "name": "Korvizol",
+        "value": 12,
+        "percentage": 3.34
+    },
+    {
+        "name": "Laellium",
+        "value": 11,
+        "percentage": 3.06
+    },
+    {
+        "name": "Feilaira",
+        "value": 11,
+        "percentage": 3.06
+    },
+    {
+        "name": "Halegryn",
+        "value": 9,
+        "percentage": 2.51
+    },
+    {
+        "name": "Athentys",
+        "value": 8,
+        "percentage": 2.23
+    },
+    {
+        "name": "Memyts Dreams",
+        "value": 6,
+        "percentage": 1.67
+    },
+    {
+        "name": "Alphacur",
+        "value": 6,
+        "percentage": 1.67
+    },
+    {
+        "name": "Laellium Gut",
+        "value": 6,
+        "percentage": 1.67
+    },
+    {
+        "name": "Mahgryn",
+        "value": 2,
+        "percentage": 0.56
+    },
+    {
+        "name": "Blinzador",
+        "value": 2,
+        "percentage": 0.56
+    },
+    {
+        "name": "Basmontex",
+        "value": 2,
+        "percentage": 0.56
+    },
+    {
+        "name": "🪸zerevest",
+        "value": 2,
+        "percentage": 0.56
+    },
+    {
+        "name": "Operação Geral",
+        "value": 1,
+        "percentage": 0.28
+    }
+];
+export const produtoBlackNovembro = [
+    {
+        "name": "Memyts",
+        "value": 69,
+        "percentage": 17.88
+    },
+    {
+        "name": "Laellium",
+        "value": 66,
+        "percentage": 17.1
+    },
+    {
+        "name": "️ Presgera",
+        "value": 52,
+        "percentage": 13.47
+    },
+    {
+        "name": "️jertaris",
+        "value": 44,
+        "percentage": 11.4
+    },
+    {
+        "name": "️garaherb",
+        "value": 32,
+        "percentage": 8.29
+    },
+    {
+        "name": "Arialief Neuropathy",
+        "value": 23,
+        "percentage": 5.96
+    },
+    {
+        "name": "Blinzador",
+        "value": 22,
+        "percentage": 5.7
+    },
+    {
+        "name": "Karylief",
+        "value": 19,
+        "percentage": 4.92
+    },
+    {
+        "name": "Feilaira",
+        "value": 12,
+        "percentage": 3.11
+    },
+    {
+        "name": "Alphacur",
+        "value": 11,
+        "percentage": 2.85
+    },
+    {
+        "name": "Korvizol",
+        "value": 9,
+        "percentage": 2.33
+    },
+    {
+        "name": "Alitoryn",
+        "value": 5,
+        "percentage": 1.3
+    },
+    {
+        "name": "Mahgryn",
+        "value": 4,
+        "percentage": 1.04
+    },
+    {
+        "name": "Todos Produtos",
+        "value": 4,
+        "percentage": 1.04
+    },
+    {
+        "name": "Olisteren",
+        "value": 3,
+        "percentage": 0.78
+    },
+    {
+        "name": "🪸zerevest",
+        "value": 2,
+        "percentage": 0.52
+    },
+    {
+        "name": "Keskara",
+        "value": 2,
+        "percentage": 0.52
+    },
+    {
+        "name": "Basmontex",
+        "value": 2,
+        "percentage": 0.52
+    },
+    {
+        "name": "Operação Geral",
+        "value": 1,
+        "percentage": 0.26
+    },
+    {
+        "name": "Kymezol",
+        "value": 1,
+        "percentage": 0.26
+    },
+    {
+        "name": "Cucudrops",
+        "value": 1,
+        "percentage": 0.26
+    },
+    {
+        "name": "Goldenfrib",
+        "value": 1,
+        "percentage": 0.26
+    },
+    {
+        "name": "‍ Vergolief",
+        "value": 1,
+        "percentage": 0.26
+    }
+];
 
 export const plataformaOutubro = [
     {
@@ -660,27 +880,8 @@ export const squadsNovembro = [
     }
 ];
 
-// DERIVED NICHES from Official Map
-const calculateNiches = (products: typeof moduloOutubro) => {
-    const nicheMap = new Map<string, number>();
-    products.forEach(p => {
-        const niche = getOfficialNiche(p.name);
-        const val = nicheMap.get(niche) || 0;
-        nicheMap.set(niche, val + p.value);
-    });
 
-    const total = Array.from(nicheMap.values()).reduce((a, b) => a + b, 0);
-    return Array.from(nicheMap.entries())
-        .map(([name, value]) => ({
-            name,
-            value,
-            percentage: Number(((value / total) * 100).toFixed(2))
-        }))
-        .sort((a, b) => b.value - a.value);
-};
 
-export const nichosOutubro = calculateNiches(moduloOutubro);
-export const nichosNovembro = calculateNiches(moduloNovembro);
 
 export const setorXmxOutubro = [
     {
@@ -762,25 +963,6 @@ export const getTipoTarefaColor = (name: string) => {
 export const getModuloColor = getProductColorOriginal;
 export const getProductColor = getProductColorOriginal;
 
-// Platform colors
-const PLATFORM_COLORS: Record<string, string> = {
-    "Cartpanda": "#22C55E",      // Verde
-    "Buygoods": "#3B82F6",       // Azul
-    "Digistore24": "#F59E0B",    // Amarelo
-    "Clickbank": "#EC4899",      // Rosa
-    "Todas": "#A855F7",          // Roxo
-    "Internet": "#06B6D4",       // Cyan
-    "Não Informado": "#94A3B8",  // Cinza
-};
-
-export const getPlatformColor = (name: string): string => {
-    return PLATFORM_COLORS[name] || "#94A3B8";
-};
-
-export const getNichoColor = (name: string): string => {
-    return OFFICIAL_NICHE_COLORS[name] || "#94A3B8";
-};
-
 export const kpisBackend = {
     totalOutubro: totalBackendOutubro,
     totalNovembro: totalBackendNovembro,
@@ -811,3 +993,50 @@ export const findBiggestGrowth = (
 
     return combined.reduce((best, item) => (item.growth > best.growth ? item : best), combined[0] || { name: 'N/A', growth: 0 });
 };
+
+// --- NEW HELPER FUNCTIONS & EXPORTS FOR BUILD FIX ---
+
+import { getOfficialNiche, OFFICIAL_NICHE_COLORS } from "./officialProducts";
+
+// Helper to get platform colors
+export const getPlatformColor = (name: string): string => {
+    const map: Record<string, string> = {
+        "Cartpanda": "#3B82F6",    // Blue
+        "Buygoods": "#10B981",     // Emerald
+        "Clickbank": "#F59E0B",    // Amber
+        "Digistore24": "#8B5CF6",  // Violet
+        "Todas": "#64748B",        // Slate
+        "Não Informado": "#94A3B8" // Gray
+    };
+    return map[name] || map[name.trim()] || "#94A3B8";
+};
+
+// Helper to get niche colors (Wraps official colors)
+export const getNichoColor = (name: string): string => {
+    return OFFICIAL_NICHE_COLORS[name] || "#94A3B8";
+};
+
+// Dynamic Niche Calculation Helper
+const calculateNiches = (products: { name: string; value: number }[]) => {
+    const nicheMap = new Map<string, number>();
+    products.forEach(p => {
+        const niche = getOfficialNiche(p.name);
+        // Special case for 'Todos Produtos' or similar if needed, currently mapping via OFFICIAL_PRODUCT_MAP
+        const val = nicheMap.get(niche) || 0;
+        nicheMap.set(niche, val + p.value);
+    });
+
+    const total = Array.from(nicheMap.values()).reduce((a, b) => a + b, 0);
+
+    return Array.from(nicheMap.entries())
+        .map(([name, value]) => ({
+            name,
+            value,
+            percentage: Number(((value / total) * 100).toFixed(2))
+        }))
+        .sort((a, b) => b.value - a.value);
+};
+
+// REPLACE STATIC NICHES WITH DYNAMIC ONES
+export const nichosOutubro = calculateNiches(moduloOutubro);
+export const nichosNovembro = calculateNiches(moduloNovembro);

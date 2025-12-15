@@ -16,13 +16,13 @@ import {
     moduloOutubro, moduloNovembro,
     totalBackendOutubro, totalBackendNovembro,
     kpisBackend,
-    getTipoTarefaColor, getModuloColor,
     produtoBlackOutubro, produtoBlackNovembro,
     plataformaOutubro, plataformaNovembro,
     squadsOutubro, squadsNovembro,
     nichosOutubro, nichosNovembro,
     setorXmxOutubro, setorXmxNovembro
 } from "@/data/dashboardBackendData";
+import { getProductColor } from "@/data/globalColors";
 
 const DashboardBackend = () => {
     return (
@@ -33,17 +33,6 @@ const DashboardBackend = () => {
                     subtitle="Análise Comparativa • Equipe de Desenvolvimento"
                     dashboardType="ads"
                 />
-
-                {/* Navigation to Funnel */}
-                <div className="mb-6 flex gap-4">
-                    <Link
-                        to="/backend/funil"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-violet-600 text-white rounded-lg font-medium text-sm hover:from-purple-600 hover:to-violet-700 transition-all shadow-md hover:shadow-lg"
-                    >
-                        <Filter className="w-4 h-4" />
-                        Ver Funil de Desenvolvimento
-                    </Link>
-                </div>
 
                 <main className="space-y-8">
                     {/* KPIs Principais */}
@@ -139,14 +128,15 @@ const DashboardBackend = () => {
                                 subtitle={`${totalBackendOutubro} entregas`}
                                 data={moduloOutubro}
                                 delay={0}
-                                colorFn={getModuloColor}
+                                colorFn={getProductColor}
                             />
+                            // ... in the chart section
                             <DonutChart
                                 title="Módulos - Novembro"
                                 subtitle={`${totalBackendNovembro} entregas`}
                                 data={moduloNovembro}
                                 delay={100}
-                                colorFn={getModuloColor}
+                                colorFn={getProductColor}
                             />
                         </div>
                     </section>

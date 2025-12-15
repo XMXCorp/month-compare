@@ -18,9 +18,9 @@ import {
   totalAdsOutubro,
   totalAdsNovembro,
   kpisAds,
-  getNichoColor,
   getSquadColor,
 } from "@/data/dashboardAdsData";
+import { getNicheColor } from "@/data/globalColors";
 
 const DashboardAds = () => {
   const { isPresenting, currentSlide, startPresentation, exitPresentation, goToSlide, nextSlide, prevSlide } = usePresentation(6);
@@ -41,13 +41,13 @@ const DashboardAds = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        <DashboardHeader 
-          onStartPresentation={startPresentation} 
+        <DashboardHeader
+          onStartPresentation={startPresentation}
           title="Dashboard ADS"
           subtitle="Análise Comparativa • Equipe de Anúncios"
           dashboardType="ads"
         />
-        
+
         <main className="space-y-8">
           {/* KPIs Principais */}
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -143,14 +143,14 @@ const DashboardAds = () => {
                 subtitle={`${totalAdsOutubro} anúncios`}
                 data={nichoOutubro.filter(n => n.name !== "VAZIO")}
                 delay={0}
-                colorFn={getNichoColor}
+                colorFn={getNicheColor}
               />
               <DonutChart
                 title="Nichos - Novembro"
                 subtitle={`${totalAdsNovembro} anúncios`}
                 data={nichoNovembro}
                 delay={100}
-                colorFn={getNichoColor}
+                colorFn={getNicheColor}
               />
             </div>
           </section>

@@ -2,7 +2,8 @@ import { ChartCard } from "@/components/dashboard/ChartCard";
 import { Bar, BarChart, XAxis, YAxis, ResponsiveContainer, Tooltip, LabelList, Cell } from "recharts";
 import { Package, Smartphone, Users, Briefcase, Zap, Target } from "lucide-react";
 import { useMemo } from "react";
-import { getProductColor, getPlatformColor, getNichoColor } from "@/data/dashboardBackendData";
+import { getProductColor, getNicheColor } from "@/data/globalColors";
+import { getPlatformColor } from "@/data/dashboardBackendData";
 
 interface DataItem {
     name: string;
@@ -391,7 +392,7 @@ export function BackendCustomFieldsComparison({
                     dataNovembro={nichosNovembro}
                     delay={250}
                     maxItems={6}
-                    colorFn={getNichoColor}
+                    colorFn={getNicheColor}
                 />
             </div>
 

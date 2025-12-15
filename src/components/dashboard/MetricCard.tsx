@@ -3,11 +3,11 @@ import { TrendingUp, TrendingDown } from "lucide-react";
 
 interface MetricCardProps {
   title: string;
-  value: number;
+  value: number | string;
   previousValue?: number;
   subtitle?: string;
   icon?: React.ReactNode;
-  variant?: "primary" | "accent" | "success";
+  variant?: "primary" | "accent" | "success" | "secondary";
   delay?: number;
 }
 
@@ -20,7 +20,7 @@ export function MetricCard({
   variant = "primary",
   delay = 0,
 }: MetricCardProps) {
-  const growth = previousValue ? ((value - previousValue) / previousValue) * 100 : null;
+  const growth = previousValue && typeof value === 'number' ? ((value - previousValue) / previousValue) * 100 : null;
   const isPositive = growth && growth > 0;
 
   const variants = {
@@ -42,6 +42,12 @@ export function MetricCard({
       accent: "text-success",
       glow: "shadow-[0_0_30px_-5px_hsl(var(--success)/0.3)]",
     },
+    secondary: {
+      bg: "bg-gradient-to-br from-purple-500/20 to-purple-500/5",
+      border: "border-purple-500/30",
+      accent: "text-purple-600",
+      glow: "shadow-[0_0_30px_-5px_hsl(270,95%,60%,0.3)]",
+    },
   };
 
   const style = variants[variant];
@@ -61,12 +67,12 @@ export function MetricCard({
           <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{title}</span>
           {icon && <div className={cn("opacity-60", style.accent)}>{icon}</div>}
         </div>
-        
+
         <div className="mt-3 flex items-baseline gap-3">
           <span className={cn("font-display text-3xl font-bold", style.accent)}>
-            {value.toLocaleString("pt-BR")}
+            {typeof value === 'number' ? value.toLocaleString("pt-BR") : value}
           </span>
-          
+
           {growth !== null && (
             <div
               className={cn(
@@ -85,7 +91,7 @@ export function MetricCard({
             </div>
           )}
         </div>
-        
+
         {subtitle && (
           <p className="mt-2 text-xs text-muted-foreground">{subtitle}</p>
         )}

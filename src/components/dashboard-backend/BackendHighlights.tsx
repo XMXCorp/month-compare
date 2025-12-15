@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { findBestPerformer, findBiggestGrowth, responsavelOutubro, responsavelNovembro, moduloOutubro, moduloNovembro, getProductColor } from "@/data/dashboardBackendData";
+import { findBestPerformer, findBiggestGrowth, responsavelOutubro, responsavelNovembro, moduloOutubro, moduloNovembro } from "@/data/dashboardBackendData";
+import { getProductColor } from "@/data/globalColors";
 import { Trophy, TrendingUp, Zap, Target } from "lucide-react";
 
 interface HighlightCardProps {

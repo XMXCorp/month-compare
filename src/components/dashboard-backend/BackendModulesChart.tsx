@@ -1,7 +1,7 @@
 import { ChartCard } from "@/components/dashboard/ChartCard";
 import { Bar, BarChart, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid, LabelList, Cell } from "recharts";
 import { useMemo } from "react";
-import { getProductColor } from "@/data/dashboardBackendData";
+import { getProductColor } from "@/data/globalColors";
 
 interface DataItem {
     name: string;
@@ -23,7 +23,8 @@ export function BackendModulesChart({
     dataOutubro,
     dataNovembro,
     delay = 0,
-}: BackendModulesChartProps) {
+    colorFn = getProductColor
+}: BackendModulesChartProps & { colorFn?: (name: string) => string }) {
     // Combine and prepare data for bar chart
     const chartData = useMemo(() => {
         // Get all unique module names
@@ -46,12 +47,12 @@ export function BackendModulesChart({
                 outubro: outubroValue,
                 novembro: novembroValue,
                 total: outubroValue + novembroValue,
-                color: getProductColor(name)
+                color: colorFn(name)
             };
         }).sort((a, b) => b.total - a.total);
 
         return combined.slice(0, 8); // Top 8 most relevant modules only
-    }, [dataOutubro, dataNovembro]);
+    }, [dataOutubro, dataNovembro, colorFn]);
 
     return (
         <ChartCard title={title} subtitle={subtitle} delay={delay}>

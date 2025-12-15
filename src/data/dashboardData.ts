@@ -99,6 +99,7 @@ export const totaisComparativo = [
   { metric: "Produto", outubro: totalProdutoOutubro, novembro: totalProdutoNovembro, crescimento: Number((((totalProdutoNovembro - totalProdutoOutubro) / totalProdutoOutubro) * 100).toFixed(1)) },
 ];
 
+
 // Dados para gráfico de barras comparativo
 export const comparativoMensal = [
   { name: "Tipo de Vídeo", Outubro: totalTipoVideoOutubro, Novembro: totalTipoVideoNovembro },

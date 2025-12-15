@@ -8,7 +8,10 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:backend": "node process_excel.js",
+    "generate:funil": "node generate_funil_data.js",
+    "generate:all": "npm run generate:backend && npm run generate:funil"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

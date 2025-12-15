@@ -7,6 +7,13 @@ import Index from "./pages/Index";
 import DashboardAds from "./pages/DashboardAds";
 import DashboardBackend from "./pages/DashboardBackend";
 import BackendFunil from "./pages/BackendFunil";
+import BackendCompiled from "./pages/BackendCompiled";
+import BackendLayout from "./layouts/BackendLayout";
+import AudiovisualLayout from "./layouts/AudiovisualLayout";
+import AudiovisualCompiled from "./pages/AudiovisualCompiled";
+import LideresLogin from "./pages/Lideres/LideresLogin";
+import LideresDashboard from "./pages/Lideres/LideresDashboard";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import Resumo from "./pages/Resumo";
 import NotFound from "./pages/NotFound";
 
@@ -23,12 +30,27 @@ const App = () => (
           <Route path="/" element={<Navigate to="/audiovisual/vsls" replace />} />
 
           {/* Audiovisual section */}
-          <Route path="/audiovisual/vsls" element={<Index />} />
-          <Route path="/audiovisual/ads" element={<DashboardAds />} />
+          <Route path="/audiovisual" element={<AudiovisualLayout />}>
+            <Route index element={<Navigate to="/audiovisual/total" replace />} />
+            <Route path="total" element={<AudiovisualCompiled />} />
+            <Route path="vsls" element={<Index />} />
+            <Route path="ads" element={<DashboardAds />} />
+          </Route>
 
           {/* Backend section */}
-          <Route path="/backend" element={<Navigate to="/backend/funil" replace />} />
-          <Route path="/backend/funil" element={<BackendFunil />} />
+          <Route path="/backend" element={<BackendLayout />}>
+            <Route index element={<Navigate to="/backend/total" replace />} />
+            <Route path="compiled" element={<BackendCompiled />} />
+            <Route path="total" element={<DashboardBackend />} />
+            <Route path="funil" element={<BackendFunil />} />
+          </Route>
+
+          {/* Lideres section (Protected) */}
+          <Route path="/lideres" element={<ProtectedRoute />}>
+            <Route index element={<Navigate to="/lideres/dashboard" replace />} />
+            <Route path="dashboard" element={<LideresDashboard />} />
+          </Route>
+          <Route path="/lideres/login" element={<LideresLogin />} />
 
           {/* Resumo section */}
           <Route path="/resumo" element={<Resumo />} />

@@ -39,16 +39,7 @@ export function DashboardHeader({
           {/* Main Navigation with dropdown */}
           <MainNavigation />
 
-          {onStartPresentation && (
-            <Button
-              onClick={onStartPresentation}
-              variant="default"
-              className="gap-2"
-            >
-              <Presentation className="h-4 w-4" />
-              <span className="hidden sm:inline">Apresentação</span>
-            </Button>
-          )}
+
 
           <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 border border-border">
             <Calendar className="h-4 w-4 text-primary" />
