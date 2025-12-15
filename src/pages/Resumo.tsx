@@ -72,7 +72,11 @@ const mergeProductData = () => {
     addData(prodFunilNov, 'funil');
 
     return Array.from(productsMap.values())
-        .sort((a, b) => (b.av + b.ads + b.backend + b.funil) - (a.av + a.ads + a.backend + a.funil))
+        .map(item => ({
+            ...item,
+            total: item.av + item.ads + item.backend + item.funil
+        }))
+        .sort((a, b) => b.total - a.total)
         .slice(0, 10); // Top 10 Products by Activity
 };
 
@@ -102,7 +106,11 @@ const aggregatedNiches = (() => {
     process(nichoFunilNov, 'funil');
 
     return Array.from(map.values())
-        .sort((a, b) => (b.av + b.ads + b.backend + b.funil) - (a.av + a.ads + a.backend + a.funil))
+        .map(item => ({
+            ...item,
+            total: item.av + item.ads + item.backend + item.funil
+        }))
+        .sort((a, b) => b.total - a.total)
         .slice(0, 8);
 })();
 
